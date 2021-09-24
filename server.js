@@ -14,6 +14,10 @@ const schema = buildSchema(`
         title: String
         rate: String
         year: Int
+    },
+    type User {
+        id: Int
+        password: String
     }
 `);
 
@@ -42,7 +46,32 @@ const moviesList = [
         "title": "Blade Runner 2049",
         "rate": "8",
         "year": 2017
-    }
+    },
+    {
+		"title": "Baby Driver",
+		"rate": "7.6",
+		"year": 2017
+	},
+	{
+		"title": "John Wick: Chapter 2",
+		"rate": "7.5",
+		"year": 2017
+	},
+	{
+		"title": "Wonder",
+		"rate": "8.0",
+		"year": 2017
+	},
+	{
+		"title": "Suicide Squad",
+		"rate": "6.0",
+		"year": 2016
+	},
+	{
+		"title": "Deadpool",
+		"rate": "8.0",
+		"year": 2016
+	}
 ]
 
 const getMovie = function(args) {
