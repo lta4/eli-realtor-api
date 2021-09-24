@@ -100,17 +100,13 @@ const root = {
 
 const app = express();
 app.use(isAuth)
-app.use('/graphql' , graphqlHTTP({
+app.use('/graphql', graphqlHTTP({
     schema: schema,
     rootValue: root,
     graphiql: true
 }));
 
 app.get('/playground', expressPlayground({ endpoint: '/graphql' }));
-
-// app.get('/', (req, res) => {
-//     res.send('Hello world');
-// });
 
 const port = process.env.PORT || "4000";
 app.listen(port, () => console.log(`Listening On: http://localhost:${port}/graphql`));
