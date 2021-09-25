@@ -14,7 +14,7 @@ const schema = buildSchema(`
         title: String
         rate: String
         year: Int
-    },
+    }
     type User {
         id: Int
         password: String
