@@ -2,7 +2,6 @@ const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
 const expressPlayground = require('graphql-playground-middleware-express').default;
-const isAuth = require('./middleware/is-auth');
 
 const schema = buildSchema(`
     type Query {
@@ -14,10 +13,6 @@ const schema = buildSchema(`
         title: String
         rate: String
         year: Int
-    }
-    type User {
-        id: Int
-        password: String
     }
 `);
 
@@ -82,9 +77,6 @@ const getMovie = function(args) {
 }
 
 const getMovies = function(args, req) {
-    if(!req.isAuth) {
-        throw new Error('Unauthenticated');
-    }
     if (args.rate) {
         const rate = args.rate;
         return moviesList.filter(movie => movie.rate === rate);
@@ -99,7 +91,6 @@ const root = {
 };
 
 const app = express();
-app.use(isAuth)
 app.use('/graphql', graphqlHTTP({
     schema: schema,
     rootValue: root,
